@@ -1,0 +1,90 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: gotask
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: gotask
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: CustomerSignup
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ap-south-1
+  profile: vinfinity-aws
+  environment:
+    TMP: C:\Temp
+    NODE_ENV: development
+    DATABASE_URL: ${env:DATABASE_URL}
+
+   
+  # Uncomment to easily set up a custom domain. Read the docs for more details:
+  # https://www.serverless.com/framework/docs/providers/aws/guide/domains
+  # domain: api.example.com
+
+functions:
+  # Customer API function
+  customer-api:
+    handler: src/handlers/customer.handler.handler
+    events:
+      # 🔹 Customer routes
+      - httpApi:
+          path: /customer/signup
+          method: post
+      - httpApi:
+          path: /customer/login
+          method: post
+
+      # 🔹 Customer Care Admin routes
+      - httpApi:
+          path: /customer/admin/login
+          method: post
+      - httpApi:
+          path: /customer/admin/users
+          method: post
+      - httpApi:
+          path: /customer/admin/users
+          method: get
+      - httpApi:
+          path: /customer/admin/users/{id}
+          method: delete
+      - httpApi:
+          path: /customer/admin/users/{id}
+          method: put
+
+      # 🔹 Department-based routes
+      - httpApi:
+          path: /customer/admin/users/by-department
+          method: post
+      - httpApi:
+          path: /customer/admin/managers/by-department
+          method: post
+
+  # Admin API function
+  admin-api:
+    handler: src/handlers/admin.handler.handler
+    events:
+      # 🔹 Admin Dashboard routes
+      - httpApi:
+          path: /admin/dashboard
+          method: post
+      - httpApi:
+          path: /admin/revenue-dashboard
+          method: post
+      - httpApi:
+          path: /admin/revenue-by-vendor-dashboard
+          method: post
+      - httpApi:
+          path: /admin/user-dashboard
+          method: post
+      - httpApi:
+          path: /admin/user-tickets-by-status
+          method: post
+
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 3000
+    lambdaPort: 3002
+    host: localhost
+    stage: dev

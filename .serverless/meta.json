@@ -1,0 +1,27 @@
+{
+  "unknown": {
+    "versionFramework": "4.18.0",
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": true,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "command": [
+      "login"
+    ],
+    "options": {},
+    "orgId": "2fddb9d4-21aa-44fe-aaa3-c643f8a27fa7",
+    "orgName": "gotask",
+    "userId": "TWy2jMYk6KCrN1h4X6",
+    "userName": "gotask",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  }
+}
