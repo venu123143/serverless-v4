@@ -20,9 +20,26 @@ const processAggregationResult = (data: AggregationResult[], defaultLabel: strin
 };
 
 /**
- * Get today's date range (start and end of day)
+ * Get date range based on provided dates or current date
+ * @param fromDate - Optional start date
+ * @param toDate - Optional end date
+ * @returns Object with startDate and endDate
  */
-const getTodayDateRange = (): { startDate: Date; endDate: Date } => {
+const getDateRange = (fromDate?: string | Date, toDate?: string | Date): { startDate: Date; endDate: Date } => {
+    // If both fromDate and toDate are provided, use them
+    if (fromDate && toDate) {
+        const startDate = new Date(fromDate);
+        const endDate = new Date(toDate);
+        
+        // Validate dates
+        if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+            throw new Error("Invalid date format provided");
+        }
+        
+        return { startDate, endDate };
+    }
+    
+    // Otherwise, use current date range
     const currentDate = new Date();
     const startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
     const endDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1);
@@ -78,7 +95,7 @@ const processTicketAggregationResult = (data: TicketAggregationResult[], default
 export default {
     createMetric,
     processAggregationResult,
-    getTodayDateRange,
+    getDateRange,
     createRevenueMetric,
     createUserMetric,
     processRevenueAggregationResult,

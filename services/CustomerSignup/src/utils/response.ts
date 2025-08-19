@@ -9,7 +9,7 @@ export interface SuccessData {
     Status: ResponseStatus;
     StatusCode: number;
     Message: string;
-    data: {
+    Data: {
         [key: string]: any;
     };
     Meta?: {

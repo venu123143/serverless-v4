@@ -43,7 +43,7 @@ const customerSignup = async (req: Request, res: Response) => {
         return RESPONSE.SuccessResponse(res, 201, {
             Status: ResponseStatus.SUCCESS,
             Message: "Signup Successfully",
-            data: newCustomer,
+            Data: newCustomer,
             StatusCode: 201,
         });
     } catch (err) {
@@ -102,7 +102,7 @@ const CustomerCareAdminLogin = async (req: Request, res: Response) => {
         return RESPONSE.SuccessResponse(res, 200, {
             Status: ResponseStatus.SUCCESS,
             Message: "Login successful",
-            data: customer,
+            Data: customer,
             StatusCode: 200,
         });
     } catch (err) {
@@ -165,7 +165,7 @@ const CustomerCareLogin = async (req: Request, res: Response) => {
         return RESPONSE.SuccessResponse(res, 200, {
             Status: ResponseStatus.SUCCESS,
             Message: "Login successful",
-            data: customer,
+            Data: customer,
             StatusCode: 200,
         });
     } catch (err) {
@@ -216,7 +216,7 @@ const CustomerSaveUserdata = async (req: Request, res: Response) => {
         return RESPONSE.SuccessResponse(res, 201, {
             Status: ResponseStatus.SUCCESS,
             Message: "User created successfully",
-            data: newUser,
+            Data: newUser,
             StatusCode: 201,
         });
     } catch (err) {
@@ -331,7 +331,7 @@ const CustomerUsersList = async (req: Request, res: Response) => {
         return RESPONSE.SuccessResponse(res, 200, {
             Status: ResponseStatus.SUCCESS,
             Message: "Users fetched successfully",
-            data: items,
+            Data: items,
             StatusCode: 200,
             Meta: {
                 totalPages,
@@ -398,7 +398,7 @@ const getUsersForDept = async (req: Request, res: Response) => {
             Message: "Users fetched successfully",
             StatusCode: 200,
             Status: ResponseStatus.SUCCESS,
-            data: users,
+            Data: users,
             Meta: {
                 currentPage: pageNum,
                 totalPages: Math.ceil(totalCount / limitNum),
@@ -455,7 +455,7 @@ const deleteCustomerUser = async (req: Request, res: Response) => {
             Status: ResponseStatus.SUCCESS,
             StatusCode: 200,
             Message: "User deleted successfully",
-            data: {},
+            Data: {},
         });
     } catch (err) {
         return RESPONSE.FailureResponse(res, 500, {
@@ -516,7 +516,7 @@ const getManagerForDept = async (req: Request, res: Response) => {
             Status: ResponseStatus.SUCCESS,
             StatusCode: 200,
             Message: "Managers fetched successfully",
-            data: managers,
+            Data: managers,
         });
     } catch (err) {
         return RESPONSE.FailureResponse(res, 500, {
@@ -571,7 +571,7 @@ const UpdateCustomerUser = async (req: Request, res: Response) => {
         return RESPONSE.SuccessResponse(res, 200, {
             Status: ResponseStatus.SUCCESS,
             Message: "User updated successfully",
-            data: updatedUser,
+            Data: updatedUser,
             StatusCode: 200,
         });
     } catch (err) {

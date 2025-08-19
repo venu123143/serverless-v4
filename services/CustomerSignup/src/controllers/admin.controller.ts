@@ -18,7 +18,7 @@ const adminDashboard = async (req: Request, res: Response): Promise<Response> =>
         await connectDB();
 
         const response: DashboardMetric[] = [];
-        const { startDate, endDate } = adminService.getTodayDateRange();
+        const { startDate, endDate } = adminService.getDateRange();
 
         // Execute all aggregation queries in parallel for better performance
         const [
@@ -172,7 +172,7 @@ const adminDashboard = async (req: Request, res: Response): Promise<Response> =>
             Status: ResponseStatus.SUCCESS,
             StatusCode: 200,
             Message: "Dashboard data retrieved successfully",
-            data: response
+            Data: response
         };
 
         return RESPONSE.SuccessResponse(res, 200, dashboardResponse);
@@ -205,7 +205,7 @@ const revenueDashboard = async (req: Request, res: Response): Promise<Response> 
         await connectDB();
 
         const response: RevenueMetric[] = [];
-        const { startDate, endDate } = adminService.getTodayDateRange();
+        const { startDate, endDate } = adminService.getDateRange();
 
         // Execute all aggregation queries in parallel for better performance
         const [
@@ -338,7 +338,7 @@ const revenueDashboard = async (req: Request, res: Response): Promise<Response> 
             Status: ResponseStatus.SUCCESS,
             StatusCode: 200,
             Message: "Revenue dashboard data retrieved successfully",
-            data: response
+            Data: response
         };
 
         return RESPONSE.SuccessResponse(res, 200, dashboardResponse);
@@ -364,7 +364,7 @@ const revenueByVendorDashboard = async (req: Request, res: Response): Promise<Re
     try {
         await connectDB();
 
-        const { startDate, endDate } = adminService.getTodayDateRange();
+        const { startDate, endDate } = adminService.getDateRange();
 
         // Get today's car wash requests grouped by vendor
         const carWashByVendor = await RequestModel.aggregate<RevenueAggregationResult>([
@@ -394,7 +394,7 @@ const revenueByVendorDashboard = async (req: Request, res: Response): Promise<Re
             Status: ResponseStatus.SUCCESS,
             StatusCode: 200,
             Message: "Revenue by vendor dashboard data retrieved successfully",
-            data: vendorMetrics
+            Data: vendorMetrics
         };
 
         return RESPONSE.SuccessResponse(res, 200, dashboardResponse);
@@ -544,7 +544,7 @@ const userDashboard = async (req: Request, res: Response): Promise<Response> => 
             Status: ResponseStatus.SUCCESS,
             StatusCode: 200,
             Message: "User dashboard data retrieved successfully",
-            data: response
+            Data: response
         };
 
         return RESPONSE.SuccessResponse(res, 200, dashboardResponse);
@@ -621,7 +621,7 @@ const getUserTicketsByStatus = async (req: Request, res: Response): Promise<Resp
             Status: ResponseStatus.SUCCESS,
             StatusCode: 200,
             Message: "Detailed user ticket breakdown retrieved successfully",
-            data: detailedMetrics
+            Data: detailedMetrics
         };
 
         return RESPONSE.SuccessResponse(res, 200, dashboardResponse);
@@ -633,7 +633,7 @@ const getUserTicketsByStatus = async (req: Request, res: Response): Promise<Resp
             Status: ResponseStatus.FAILED,
             StatusCode: 500,
             Message: error instanceof Error ? error.message : "Internal server error",
-            data: []
+            Data: []
         };
 
         return RESPONSE.FailureResponse(res, 500, errorResponse);

@@ -79,6 +79,51 @@ functions:
           path: /admin/user-tickets-by-status
           method: post
 
+  # Filters API function
+  filters-api:
+    handler: src/handlers/filters.handler.handler
+    events:
+      # 🔹 Dashboard routes
+      - httpApi:
+          path: /filters/dashboard
+          method: post
+      - httpApi:
+          path: /filters/dashboard/area-requests
+          method: post
+      - httpApi:
+          path: /filters/dashboard/category-wise
+          method: post
+      - httpApi:
+          path: /filters/dashboard/franchise-complaints
+          method: post
+      - httpApi:
+          path: /filters/dashboard/franchise-count
+          method: post
+
+      # 🔹 Area and complaints routes
+      - httpApi:
+          path: /filters/area-complaints-count
+          method: post
+      - httpApi:
+          path: /filters/dropdown/district-franchisers
+          method: post
+
+      # 🔹 Department routes
+      - httpApi:
+          path: /filters/department/by-id
+          method: post
+      - httpApi:
+          path: /filters/departments/by-org
+          method: post
+
+      # 🔹 Designation routes
+      - httpApi:
+          path: /filters/designation/by-id
+          method: post
+      - httpApi:
+          path: /filters/designations/by-dept
+          method: post
+
 plugins:
   - serverless-offline
 
