@@ -1,5 +1,5 @@
 {
-  "name": "gotask",
+  "name": "serverless",
   "version": "1.0.0",
   "main": "index.js",
   "private": true,
@@ -14,5 +14,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "aws-lambda": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.152"
+  }
 }
